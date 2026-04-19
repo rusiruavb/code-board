@@ -1,4 +1,4 @@
-const root = document.getElementById("root");
+const root = document.getElementById("root"); // O(1)
 
 let count = 0;
 

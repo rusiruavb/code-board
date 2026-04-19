@@ -1,18 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./components/button";
+import Form from "./components/form";
 
 function App() {
   let [count, setCount] = useState(0);
+  let [buttonText, setButtonText] = useState("Click");
 
-  const handleClick = () => {
-    setCount(count + 1);
+  useEffect(() => {
+    // Mount + Update
+    console.log("Component is mounted and updated");
+  });
+
+  useEffect(() => {
+    // Mount
+    console.log("Component is mounted");
+  }, []);
+
+  useEffect(() => {
+    // Unmount
+    return () => {
+      console.log("Component is unmounted");
+    };
+  }, []);
+
+  const handleClick = (message) => {
+    alert(message);
   };
+
+  useEffect(() => {
+    if (count === 5) {
+      setButtonText("Add to cart");
+    } else {
+      setButtonText("Click");
+    }
+  }, [count]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold mb-2">Counter</h1>
-      <p className="text-2xl font-bold mb-2">{count}</p>
-      <Button buttonText="Click" onClick={handleClick} />
+      <Form />
     </div>
   );
 }
